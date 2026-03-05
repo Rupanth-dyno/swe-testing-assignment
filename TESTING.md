@@ -8,7 +8,7 @@ Quick-Calc employs a multi-layered testing approach combining **unit tests** and
 
 - **8 Unit Tests**: Validating individual calculation functions
 - **2 Integration Tests**: Verifying end-to-end user workflows
-- **Total: 10 Tests** (all passing ✅)
+- **Total: 10 Tests** (all passing)
 
 ---
 
@@ -22,7 +22,7 @@ Quick-Calc employs a multi-layered testing approach combining **unit tests** and
    - Error handling: DivisionByZeroError exception
 
 2. **User Session Workflow** (`test_integration_session.py`)
-   - Full calculation interaction: input → operator → input → equals
+   - Full calculation interaction: input, operator, input, equals
    - State reset functionality with the Clear button
 
 ### What We Did NOT Test
@@ -47,14 +47,14 @@ This targeted approach provides high confidence in reliability while maintaining
 
 ## Connection to Lecture 3 Concepts
 
-### 1. The Testing Pyramid 🔺
+### 1. The Testing Pyramid
 
 **Our Test Suite Structure:**
 ```
-                △ Integration Tests (2 tests)
-              /     \
-            /  Unit Tests (8 tests)  \
-          /________________________\
+        Integration Tests (2 tests)
+       /                          \
+      /     Unit Tests (8 tests)    \
+     /______________________________\
 ```
 
 **Analysis:**
@@ -106,30 +106,29 @@ def test_full_user_interaction_addition():
 
 ### 3. Functional vs Non-Functional Testing
 
-**Functional Testing (✅ IMPLEMENTED):**
-```python
-# Tests verify the calculator DOES what it should
-✓ Addition returns correct result
-✓ Subtraction returns correct result
-✓ Multiplication returns correct result
-✓ Division returns correct result and handles division by zero
-✓ Clear operation resets state
-✓ User can perform complete calculation workflow
-✓ Decimal numbers handled correctly
-✓ Negative numbers handled correctly
-✓ Large numbers handled correctly
-```
+**Functional Testing (IMPLEMENTED):**
+
+The following functional aspects were tested:
+- Addition returns correct result
+- Subtraction returns correct result
+- Multiplication returns correct result
+- Division returns correct result and handles division by zero
+- Clear operation resets state
+- User can perform complete calculation workflow
+- Decimal numbers handled correctly
+- Negative numbers handled correctly
+- Large numbers handled correctly
 
 **Non-Functional Testing (NOT IMPLEMENTED):**
-```
-✗ Performance: How fast does calculation complete? (too fast to measure meaningfully)
-✗ Scalability: How many operations can session handle? (not applicable)
-✗ Reliability: What's the uptime? (single-session CLI, always reliable)
-✗ Usability: Is the CLI intuitive? (subjective, out of scope)
-✗ Security: Can input be validated? (not required for calculator)
-✗ Compatibility: Works on Python 3.8+? (assumed, not tested)
-✗ Maintainability: Is code readable? (verified by code review, not testing)
-```
+
+The following non-functional aspects were not tested:
+- Performance: How fast does calculation complete? (too fast to measure meaningfully)
+- Scalability: How many operations can session handle? (not applicable)
+- Reliability: What's the uptime? (single-session CLI, always reliable)
+- Usability: Is the CLI intuitive? (subjective, out of scope)
+- Security: Can input be validated? (not required for calculator)
+- Compatibility: Works on Python 3.8+? (assumed, not tested)
+- Maintainability: Is code readable? (verified by code review, not testing)
 
 **Why This Focus:**
 - Functional testing directly validates requirements ("+", "-", "*", "/" operations)
@@ -166,7 +165,7 @@ Our test suite serves as a **regression test suite** for future maintenance:
 3. **CI/CD Integration (Not Implemented Here):**
    ```bash
    # In a real project, this would run on every commit:
-   git push → GitHub Actions → python -m pytest tests/ → all pass ✅ merge accepted
+   git push > GitHub Actions > python -m pytest tests/ > all pass > merge accepted
    ```
 
 4. **Test Coverage Tracking:**
@@ -188,16 +187,16 @@ Our test suite serves as a **regression test suite** for future maintenance:
 
 | Test Name | Type | Status | Purpose |
 |-----------|------|--------|---------|
-| test_addition_basic | Unit | ✅ PASS | Verify 5 + 3 = 8 |
-| test_subtraction_basic | Unit | ✅ PASS | Verify 10 - 4 = 6 |
-| test_multiplication_basic | Unit | ✅ PASS | Verify 6 × 7 = 42 |
-| test_division_basic | Unit | ✅ PASS | Verify 20 ÷ 4 = 5 |
-| test_division_by_zero_raises | Unit | ✅ PASS | Verify DivisionByZeroError thrown |
-| test_negative_numbers | Unit | ✅ PASS | Verify operations with negative numbers |
-| test_decimal_numbers | Unit | ✅ PASS | Verify operations with decimals (0.1 × 0.2) |
-| test_very_large_numbers | Unit | ✅ PASS | Verify operations with 10^18 numbers |
-| test_full_user_interaction_addition | Integration | ✅ PASS | Verify complete user workflow: 5 + 3 = |
-| test_clear_resets_after_calculation | Integration | ✅ PASS | Verify Clear resets display to "0" |
+| test_addition_basic | Unit | PASS | Verify 5 + 3 = 8 |
+| test_subtraction_basic | Unit | PASS | Verify 10 - 4 = 6 |
+| test_multiplication_basic | Unit | PASS | Verify 6 x 7 = 42 |
+| test_division_basic | Unit | PASS | Verify 20 / 4 = 5 |
+| test_division_by_zero_raises | Unit | PASS | Verify DivisionByZeroError thrown |
+| test_negative_numbers | Unit | PASS | Verify operations with negative numbers |
+| test_decimal_numbers | Unit | PASS | Verify operations with decimals (0.1 x 0.2) |
+| test_very_large_numbers | Unit | PASS | Verify operations with 10^18 numbers |
+| test_full_user_interaction_addition | Integration | PASS | Verify complete user workflow: 5 + 3 = |
+| test_clear_resets_after_calculation | Integration | PASS | Verify Clear resets display to 0 |
 
 **Summary:** All 10 tests passing. Unit tests provide broad coverage of calculation logic. Integration tests validate end-to-end workflows. Together, they create a robust regression test suite for future maintenance.
 
